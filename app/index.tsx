@@ -55,12 +55,21 @@ export default function TodoApp() {
 
   return (
     <ImageBackground
-      source={{ uri: "https://example.com/your-image.jpg" }}
+      source={{ uri: "https://th.bing.com/th/id/OIP.-HOMyiy88nQV5skJ7AuthgHaNK?rs=1&pid=ImgDetMain" }}
       resizeMode="cover"
       style={styles.background}
+      onError={(error) => console.log("Image failed to load:", error)}
     >
       <View style={styles.container}>
         <Text style={styles.title}>Todo List App</Text>
+
+        {/* Search task (moved to the top) */}
+        <TextInput
+          style={styles.input}
+          placeholder="Search tasks"
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+        />
 
         {/* Input for new task */}
         <TextInput
@@ -70,14 +79,6 @@ export default function TodoApp() {
           onChangeText={setTaskInput}
         />
         <Button title="Add Task" onPress={addTask} />
-
-        {/* Search task */}
-        <TextInput
-          style={styles.input}
-          placeholder="Search tasks"
-          value={searchQuery}
-          onChangeText={setSearchQuery}
-        />
 
         {/* Task list */}
         <FlatList
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
-    backgroundColor: "rgba(255, 255, 255, 0.8)", // Adds opacity to see the background through
+    backgroundColor: "rgba(255, 255, 255, 0.4)", // Adds opacity to see the background through
     width: "100%",
   },
   title: {
